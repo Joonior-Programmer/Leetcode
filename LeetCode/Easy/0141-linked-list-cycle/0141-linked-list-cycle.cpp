@@ -1,25 +1,26 @@
 /**
  * Definition for singly-linked list.
- * class ListNode {
+ * struct ListNode {
  *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
  */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        HashSet<ListNode> checkExist = new HashSet<>();
-        ListNode curr = head;
-        while (curr != null){
-            if (checkExist.contains(curr)){
+
+#include <set>
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        set<ListNode*> checkExist;
+        ListNode* curr = head;
+        while (curr) {
+            if (checkExist.find(curr) != checkExist.end()){
                 return true;
             }
-            checkExist.add(curr);
-            curr = curr.next;
+            checkExist.insert(curr);
+            curr = curr->next;
         }
         return false;
     }
-}
+};
