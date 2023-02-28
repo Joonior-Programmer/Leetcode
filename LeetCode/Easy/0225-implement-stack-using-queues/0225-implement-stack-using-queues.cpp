@@ -17,7 +17,6 @@ public:
             q.pop();
         }
         int ret = q.front();
-        q.pop();
         q = temp;
         return ret;
     }
