@@ -1,31 +1,19 @@
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        if not nums:
-            return []
-        elif len(nums) < 2:
-            return [str(nums[0])]
+        i = 0
+        length = len(nums)
         ret = []
-        min = nums[0]
-        max = nums[1]
-        if min + 1 != max:
-            ret.append(str(min))
-            min = nums[1]
-        for v in nums[2:]:
-            if max + 1 == v:
-                max = v
-            elif min == max:
-                ret.append(str(min))
-                min = v
-                max = v
-            else:
-                ret.append(f"{min}->{max}")
-                min = v
-                max = v
-
-        if min == max:
-            ret.append(str(min))
-        else:
-            ret.append(f"{min}->{max}")
+        while i < length:
+            low = i
             
+            while i + 1 < length and nums[i+1] == nums[i]+1:
+                i += 1
+            
+            if low == i:
+                ret.append(str(nums[low]))
+            else:
+                ret.append(str(nums[low]) + "->" + str(nums[i]))
+                
+            i += 1
         return ret
         
