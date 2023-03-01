@@ -4,16 +4,18 @@ func summaryRanges(nums []int) []string {
     var ret []string
     for i < length {
         low := i
-        high := i
-        for high + 1 < length && nums[high+1] == nums[high]+1 {high++}
         
-        if low == high {
-            ret = append(ret, strconv.Itoa(nums[low]))
-        } else {
-            ret = append(ret, strconv.Itoa(nums[low]) + "->" + strconv.Itoa(nums[high]))
+        for i + 1 < length && nums[i+1] == nums[i]+1 {i++}
+        
+        var buf bytes.Buffer
+        buf.WriteString(strconv.Itoa(nums[low]))
+        
+        if low != i {
+            buf.WriteString("->")
+            buf.WriteString(strconv.Itoa(nums[i]))
         }
-        
-        i = high + 1
+        ret = append(ret, buf.String())
+        i++
     }
     return ret
 }
