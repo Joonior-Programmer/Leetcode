@@ -13,7 +13,7 @@ class Solution {
             StringBuffer buf = new StringBuffer(Integer.toString(nums[low]));
             if (low != i) {
                 buf.append("->");
-                buf.append(Integer.toString(nums[i]));
+                buf.append(nums[i]);
             }
             ret.add(buf.toString());
             ++i;
