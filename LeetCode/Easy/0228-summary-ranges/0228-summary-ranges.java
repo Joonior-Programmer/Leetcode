@@ -1,41 +1,23 @@
 class Solution {
     public List<String> summaryRanges(int[] nums) {
         int len = nums.length;
+        int i = 0;
         ArrayList<String> ret = new ArrayList<>();
+        while (i < len){
+            int low = i;
 
-        if (len == 0) return ret;
-        else if (len == 1) {
-            ret.add(String.valueOf(nums[0])); 
-            return ret;
-        }
-
-        int min = nums[0];
-        int max = nums[1];
-
-        if (min + 1 != max) {
-            ret.add(String.valueOf(min));
-            min = max;
-        }
-        
-        for (int i = 2; i < len; ++i){
-            if (nums[i] == max + 1) ++max;
-            else if (min == max) {
-                ret.add(String.valueOf(min));
-                min = nums[i];
-                max = nums[i];
-            } else {
-                ret.add(String.valueOf(min)+"->"+String.valueOf(max));
-                min = nums[i];
-                max = nums[i];
+            while (i + 1 < len && nums[i+1] == nums[i]+1){
+                ++i;
             }
+             
+            StringBuffer buf = new StringBuffer(Integer.toString(nums[low]));
+            if (low != i) {
+                buf.append("->");
+                buf.append(Integer.toString(nums[i]));
+            }
+            ret.add(buf.toString());
+            ++i;
         }
-        
-        if (min == max){
-            ret.add(String.valueOf(min));
-        } else {
-            ret.add(String.valueOf(min)+"->"+String.valueOf(max));
-        }
-
         return ret;
     }
 }
