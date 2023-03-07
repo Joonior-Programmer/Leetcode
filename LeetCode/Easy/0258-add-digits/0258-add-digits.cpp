@@ -8,7 +8,7 @@ public:
                 num /= 10;
             }
             num = temp;
-        temp = 0;
+            temp = 0;
         }
         return num;
     }
