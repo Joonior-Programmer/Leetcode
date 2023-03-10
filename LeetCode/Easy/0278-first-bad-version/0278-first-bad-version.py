@@ -5,11 +5,11 @@ class Solution:
     def firstBadVersion(self, n: int) -> int:
         good_max = 0
         bad_min = n
+        mid = (good_max + bad_min) // 2
         while bad_min != good_max + 1:
-            mid = (good_max + bad_min) // 2
-            ret = isBadVersion(mid)
-            if ret:
+            if isBadVersion(mid):
                 bad_min = mid
             else:
                 good_max = mid
+            mid = (good_max + bad_min) // 2
         return bad_min
