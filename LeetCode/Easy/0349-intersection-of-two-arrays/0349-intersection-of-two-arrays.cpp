@@ -1,8 +1,11 @@
+
+#include<hash_map>
+
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         vector<int> ret;
-        map<int, bool> a;
+        __gnu_cxx::hash_map<int, bool> a;
 
         for (int i = 0; i < nums1.size(); ++i) a[nums1[i]] = true;
         
