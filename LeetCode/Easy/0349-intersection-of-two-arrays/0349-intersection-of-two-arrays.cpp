@@ -2,13 +2,15 @@ class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         vector<int> ret;
-        unordered_set<int> a;
-        unordered_set<int> b;
-        for (int i = 0; i < nums1.size(); ++i) a.insert(nums1[i]);
-        for (int i = 0; i < nums2.size(); ++i) b.insert(nums2[i]);
+        map<int, bool> a;
+
+        for (int i = 0; i < nums1.size(); ++i) a[nums1[i]] = true;
         
-        for (auto v = a.begin(); v != a.end(); ++v){
-            if (b.find((*v)) != b.end()) ret.push_back((*v));
+        for (int i = 0; i < nums2.size(); ++i){
+            if (a[nums2[i]]) {
+                ret.push_back(nums2[i]);
+                a[nums2[i]] = false;
+            }
         }
         
         return ret;
