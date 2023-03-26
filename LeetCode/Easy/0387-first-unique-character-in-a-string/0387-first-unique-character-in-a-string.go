@@ -1,25 +1,14 @@
 func firstUniqChar(s string) int {
-    location := make(map [rune][]int)
-    ret := -1
-    for i, v := range s {
-        _, ok := location[v] 
-        if ok {
-            location[v][1] = i
-        } else {
-            location[v] = append(location[v], i)
-            location[v] = append(location[v], i)
-        }
-    } 
+    ret := make([]int, 26)
+    for _, v := range s {
+        ret[v-'a']++
+    }
 
-    for _, v := range location {
-        if v[0] == v[1] {
-            if ret == -1 {
-                ret = v[0]
-            } else if ret > v[0] {
-                ret = v[0]
-            }
+    for i := 0; i < len(s); i++ {
+        if ret[s[i] - 97] == 1 {
+            return i
         }
     }
 
-    return ret
+    return -1
 }
