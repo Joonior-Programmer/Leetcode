@@ -1,26 +1,18 @@
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
-        is_one_plus = False
-        ret = ""
+        ret = []
+        carry = 0
         i = len(num1) - 1
         j = len(num2) - 1
-        while i > -1 and j > -1:
-            added = int(num1[i]) + int(num2[j]) + is_one_plus
-            is_one_plus = False
-            if added > 9:
-                is_one_plus = True
-                added %= 10
-            ret = str(added) + ret
+        while i > -1 or j > -1 or carry:
+            if i > -1:
+                carry += int(num1[i])
+            if j > -1:
+                carry += int(num2[j])
+            ret.append(str(carry % 10))
+            carry //= 10
             i -= 1
             j -= 1
 
-        if i > -1:
-            ret = str(int(num1[:i+1]) + is_one_plus) + ret
-            is_one_plus = False
-        elif j > -1:
-            ret = str(int(num2[:j+1]) + is_one_plus) + ret
-            is_one_plus = False
-        elif is_one_plus:
-            ret = "1" + ret
 
-        return ret
+        return "".join(ret[::-1])
