@@ -9,6 +9,7 @@ public:
         for (int i = 1; i < nums.size() + 1; ++i) {
             if (!exist[i]) ret.push_back(i);
         }
+        delete[] exist;
         return ret;
     }
 };
