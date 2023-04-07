@@ -4,14 +4,13 @@ class Solution {
         Arrays.sort(s);
         int i = 0;
         int j = 0;
-        int ret = 0;
+
         while (i < g.length && j < s.length){
             if (g[i] <= s[j]){
                 ++i;
-                ++ret;
             }
             ++j;
         }
-        return ret;
+        return i;
     }
 }
