@@ -1,9 +1,12 @@
 func findComplement(num int) int {
     ret := 0
-    temp := num
-    for temp > 0 {
-        ret++
-        temp >>= 1
+    temp := 1
+    for num > 0 {
+        if num & 1 == 0 {
+            ret += temp
+        }
+        temp *= 2
+        num >>= 1
     }
-    return num ^ int(math.Pow(2, float64(ret))-1)
+    return ret
 }
