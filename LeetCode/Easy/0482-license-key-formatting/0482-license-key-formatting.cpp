@@ -9,10 +9,7 @@ public:
                     ret += "-";
                     temp = k;
                 }
-                if (s[i] >= 'a' && s[i] <= 'z'){
-                    ret += s[i] - 32;
-                }
-                else ret += s[i];
+                ret += toupper(s[i]);
                 temp--;
             }
             
