@@ -4,11 +4,11 @@ public:
         int ret = 0;
         int temp = 0;
         for (int i = 0; i < nums.size(); ++i){
-            if (!nums[i]){
+            if (nums[i]){
+                ret = max(++temp, ret);    
+            } else {
                 temp = 0;
-                continue;
             }
-            ret = max(++temp, ret);
         }
         return ret;
     }
