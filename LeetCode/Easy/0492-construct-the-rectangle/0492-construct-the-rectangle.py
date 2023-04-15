@@ -1,6 +1,5 @@
 class Solution:
     def constructRectangle(self, area: int) -> List[int]:
-        W = int(area ** 0.5)
-        while area % W != 0:
-            W -= 1
-        return [area // W, W]
+        for w in range(int(area ** 0.5), 0, -1):
+            if area % w == 0:
+                return [area // w, w]
