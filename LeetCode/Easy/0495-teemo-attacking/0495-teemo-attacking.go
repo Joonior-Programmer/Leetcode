@@ -1,10 +1,10 @@
 func findPoisonedDuration(timeSeries []int, duration int) int {
     maxTime := -999
     ret := 0
-    for i := 0; i < len(timeSeries); i++ {
+    for _, v := range timeSeries {
         ret += duration
-        if maxTime >= timeSeries[i] {ret -= maxTime - timeSeries[i] + 1}
-        maxTime = timeSeries[i] + duration - 1
+        if maxTime >= v {ret -= maxTime - v}
+        maxTime = v + duration
     }
     return ret
 }
