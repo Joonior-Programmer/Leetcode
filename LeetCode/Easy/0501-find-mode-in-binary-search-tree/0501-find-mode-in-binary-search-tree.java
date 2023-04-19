@@ -14,10 +14,10 @@
  * }
  */
 class Solution {
+    HashMap<Integer, Integer> count = new HashMap<>();
+    
     public int[] findMode(TreeNode root) {
-        HashMap<Integer, Integer> count = new HashMap<>();
-        
-        DFS(root, count);
+        DFS(root);
         
         int max_val = 0;
         int val_count = 0;
@@ -39,10 +39,10 @@ class Solution {
         return ret;
     }
     
-    private void DFS(TreeNode node, HashMap<Integer, Integer> count){
+    private void DFS(TreeNode node){
         if (node == null) return;
         count.put(node.val, count.getOrDefault(node.val, 0) + 1);
-        DFS(node.left, count);
-        DFS(node.right, count);
+        DFS(node.left);
+        DFS(node.right);
     }
 }
