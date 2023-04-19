@@ -27,6 +27,7 @@ class Solution {
                 val_count = 1;
             } else if (max_val == value) ++val_count;
         }
+        
         int[] ret = new int[val_count];
         int i = 0;
         for (int key: count.keySet()) {
