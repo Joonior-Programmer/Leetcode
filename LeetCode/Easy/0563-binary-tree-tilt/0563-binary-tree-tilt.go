@@ -7,26 +7,24 @@
  * }
  */
 
-var ret int = 0
-
 func findTilt(root *TreeNode) int {
-    ret = 0
-    DFS(root)
+    ret := 0
+    DFS(root, &ret)
 
     return ret
 }
 
-func DFS(node *TreeNode) int {
+func DFS(node *TreeNode, ret *int) int {
     if node == nil { return 0 }
     
-    left := DFS(node.Left)
-    right := DFS(node.Right)
+    left := DFS(node.Left, ret)
+    right := DFS(node.Right, ret)
     
     diff := left - right
     
-    if diff < 0 { diff *= -1 }
+    if diff < 0 { diff = -diff }
     
-    ret += diff
+    *ret += diff
     
     return left + right + node.Val
 }
