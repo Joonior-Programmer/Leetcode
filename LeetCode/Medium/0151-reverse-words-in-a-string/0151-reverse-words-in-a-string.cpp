@@ -11,7 +11,6 @@ public:
             
             right = left;
             while (right < s.size() && s[right] != ' ') ++ right;
-            cout << left << " "<< right<< endl;
             if (left != right){
                 ret.push_back(s.substr(left, right - left));
                 ++right;
