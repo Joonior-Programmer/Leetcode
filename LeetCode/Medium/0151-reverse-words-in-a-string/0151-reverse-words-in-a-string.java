@@ -2,17 +2,21 @@ class Solution {
     public String reverseWords(String s) {
         ArrayList<String> ret = new ArrayList<>();
         StringBuffer buffer = new StringBuffer();
+        char[] sCharArray = s.toCharArray();
+        int left = 0;
+        int right = 0;
         
-        for (char v : s.toCharArray()){
-            if (v != ' '){
-                buffer.append(v);
-            } else if (v == ' ' && buffer.length() != 0) {
-                ret.add(buffer.toString());
-                buffer.setLength(0);
-            } 
+        while (right < sCharArray.length){
+            while (left < sCharArray.length && sCharArray[left] == ' ') ++left;
+            right = left;
+            while (right < sCharArray.length && sCharArray[right] != ' ') ++right;
+            if (left != right){
+                ret.add(s.substring(left, right));
+                ++right;
+                left = right;
+            }
         }
         
-        if (buffer.length() != 0) ret.add(buffer.toString());
         
         Collections.reverse(ret);
         
