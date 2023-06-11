@@ -13,17 +13,16 @@ class Solution {
 public:
     int ret = 0;
     int longestZigZag(TreeNode* root) {
-        DFS(root, true, 0);
-        DFS(root, false, 0);
-        return ret - 1;
+        DFS(root, 0, 0);
+        return ret;
     }
     
-    void DFS(TreeNode* node, bool is_left, int ret){
-        if (!node) {
-            this->ret = max(ret, this->ret);
-            return;
-        }
-        DFS(node->left, !is_left, is_left ? ret + 1 : 0);
-        DFS(node->right, !is_left, is_left ? 0 : ret + 1);
+    void DFS(TreeNode* node, int left, int right){
+        if (!node) return;
+        
+        ret = max(ret, max(left, right));
+        
+        DFS(node->left, right+1, 0);
+        DFS(node->right, 0, left+1);
     }
 };
