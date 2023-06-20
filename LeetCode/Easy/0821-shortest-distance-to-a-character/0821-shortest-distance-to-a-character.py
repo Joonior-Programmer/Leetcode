@@ -1,9 +1,9 @@
 class Solution:
     def shortestToChar(self, s: str, c: str) -> List[int]:
       n = len(s)
-      ret = [9998] * n
+      ret = [n] * n
 
-      val = 9999
+      val = n
       
       for i in range(n):
         if s[i] == c:
@@ -13,7 +13,7 @@ class Solution:
           ret[i] = val
           val += 1
       
-      val = 9999
+      val = n
 
       for i in range(n - 1, -1, -1):
         if s[i] == c:
