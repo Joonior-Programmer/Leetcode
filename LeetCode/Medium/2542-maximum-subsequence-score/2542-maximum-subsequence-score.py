@@ -1,21 +1,14 @@
 class Solution:
     def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        pairs = [(n1, n2) for n1, n2 in zip(nums1, nums2)]
-        pairs.sort(key=lambda x : x[1], reverse=True)
+        idxs = sorted([i for i in range(len(nums1))], key=lambda x : nums2[x], reverse=True)
         
-        heap = []
-        n1_sum = 0
-        ret = 0
+        heap = [nums1[idxs[i]] for i in range(k)]
+        n1_sum = sum(nums1[idxs[i]] for i in range(k))
+        ret = n1_sum * nums2[idxs[k-1]]
+        heapify(heap)
 
-        for n1, n2 in pairs:
-            n1_sum += n1
-            heapq.heappush(heap, n1)
-
-            if len(heap) > k:
-                temp = heapq.heappop(heap)
-                n1_sum -= temp
-            
-            if len(heap) == k:
-                ret = max(ret, n1_sum * n2)
+        for i in idxs[k:]:
+            n1_sum += nums1[i] - heapq.heappushpop(heap, nums1[i])
+            ret = max(ret, n1_sum * nums2[i])
 
         return ret
