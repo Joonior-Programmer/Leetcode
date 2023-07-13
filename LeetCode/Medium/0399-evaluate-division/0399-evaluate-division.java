@@ -9,7 +9,7 @@ class Solution {
             String x = queries.get(i).get(0);
             String y = queries.get(i).get(1);
             if (!map.containsKey(x) || !map.containsKey(y)) ret[i] = -1;
-            else if (x == y) ret[i] = 1;
+            else if (x.equals(y)) ret[i] = 1;
             else {
                 double value = DFS(x, y, new HashSet<String>());
                 if (value != -1){
