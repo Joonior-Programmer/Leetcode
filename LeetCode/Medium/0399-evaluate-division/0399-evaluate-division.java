@@ -2,7 +2,7 @@ class Solution {
     HashMap<String, HashMap<String, Double>> map;
     
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        map = createMap(equations, values);
+        createMap(equations, values);
         double[] ret = new double[queries.size()];
         
         for (int i = 0; i < queries.size(); ++i){
@@ -22,7 +22,7 @@ class Solution {
         return ret;
     }
     
-    private HashMap<String, HashMap<String, Double>> createMap(List<List<String>> equations, double[] values){
+    private void createMap(List<List<String>> equations, double[] values){
         HashMap<String, HashMap<String, Double>> map = new HashMap();
         
         for (int i = 0; i < equations.size(); ++i){
@@ -44,7 +44,7 @@ class Solution {
             }
         }
         
-        return map;
+        this.map = map;
     }
     
     private double DFS(String node, String target, HashSet<String> visited){
