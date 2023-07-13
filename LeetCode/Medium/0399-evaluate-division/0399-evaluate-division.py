@@ -7,37 +7,43 @@ class Solution:
             v0, v1 = equations[i][0], equations[i][1]
             map[v0][v1] = values[i]
             map[v1][v0] = 1 / values[i]
-            map[v0][v0] = 1
-            map[v1][v1] = 1
+        
+        def DFS(node, target, visited):
+            route = map[node]
 
-            for k0, value0 in map[v0].items():
-                if v0 != k0:
-                    map[k0][v1] = (1 / value0) * values[i]
-                    map[v1][k0] = 1 / ((1 / value0) * values[i])
-            
-            for k0, value0 in map[v1].items():
-                if v1 != k0:
-                    map[k0][v0] = (1 / value0) / values[i]
-                    map[v0][k0] = value0 * values[i]
+            if target in route:
+                return route[target]
 
-        temp = defaultdict(lambda: defaultdict(float))        
+            visited.add(node)
 
-        for k0, v0 in map.items():
-            for k1, v1 in v0.items():
-                if k0 != k1:                    
-                    for k2, v2 in map[k1].items():
-                        if k2 in map[k1] and k2 not in map[k0]:
-                            temp[k0][k2] = v1 * v2
-                            temp[k2][k0] = 1 / (v1 * v2)
+            result = -1
 
-        for k0, v0 in temp.items():
-            for k1, v1 in v0.items():
-                map[k0][k1] = v1
+            for k, v in route.items():
+                if k not in visited:
+                    
+                    result = DFS(k, target, visited)
 
-        for v in queries:
-            if v[1] in map[v[0]]:
-                ret.append(map[v[0]][v[1]])
+                    if result != -1:
+                        result *= v 
+                        route[target] = result
+                        map[target][node] = 1 / result
+                        break
+
+            return result
+
+        for x, y in queries:
+            if x not in map or y not in map:
+                ret.append(-1)
+            elif x == y:
+                ret.append(1)
             else:
-                ret.append(-1)    
+                temp = DFS(x, y, set())
+
+                if temp == -1:
+                    ret.append(-1)
+                else:
+                    ret.append(temp)
+                    map[x][y] = temp
+                    map[y][x] = 1 / temp
 
         return ret
