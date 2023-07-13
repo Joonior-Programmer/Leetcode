@@ -23,7 +23,7 @@ class Solution {
     }
     
     private void createMap(List<List<String>> equations, double[] values){
-        HashMap<String, HashMap<String, Double>> map = new HashMap();
+        map = new HashMap();
         
         for (int i = 0; i < equations.size(); ++i){
             String x = equations.get(i).get(0);
