@@ -1,14 +1,11 @@
 class Solution:
     def numTilings(self, n: int) -> int:
-      sum_tile = [1, 3, 8, 19, 43]
-      ret_tile = [1, 2, 5, 11, 24]
-      i = 0
-      j = 4
+      ret = [0] * max(3, n)
+      ret[0] = 1
+      ret[1] = 2
+      ret[2] = 5
 
-      while j < n:
-        ret_tile.append((sum_tile[j] + ret_tile[j-1] - sum_tile[i]) % (10 ** 9 + 7))
-        sum_tile.append((sum_tile[j] + ret_tile[j+1]) % (10 ** 9 + 7))
-        i += 1
-        j += 1
-      
-      return ret_tile[n-1]
+      for i in range(3, n):
+          ret[i] = (ret[i-1] * 2 + ret[i-3]) % 1000000007
+
+      return ret[n-1]
