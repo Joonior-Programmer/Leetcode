@@ -4,14 +4,12 @@ class Solution {
         int nextMax = 0;
         int maxPosition = 0;
         int ret = 0;
+        int i = 0;
         
-        for (int i = 0; i < n; ++i){
-            nextMax = Math.max(nextMax, i + nums[i]);
-            if (i == maxPosition){
-                ++ret;
-                maxPosition = nextMax;
-                if (maxPosition >= n) return ret;
-            }
+        while (i < n && maxPosition < n){
+            while (i <= maxPosition) nextMax = Math.max(nextMax, i + nums[i++]);
+            ++ret;
+            maxPosition = nextMax;
         }
         
         return ret;
