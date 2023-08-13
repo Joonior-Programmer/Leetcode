@@ -19,12 +19,12 @@ class RandomizedSet:
         length = len(self.vals)-1
         idx = self.dict.pop(val)
 
-        if idx == length:
-            self.vals.pop()
-        else:
-            self.vals[idx], self.vals[length] = self.vals[length], self.vals[idx]
+        if idx != length:
+            self.vals[idx] = self.vals[length]
             self.dict[self.vals[idx]] = idx
-            self.vals.pop()
+        
+            
+        self.vals.pop()
 
         return True
         
