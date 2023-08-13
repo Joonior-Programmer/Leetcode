@@ -14,6 +14,7 @@ class RandomizedSet {
 
         vals.add(val);
         map.put(val, map.size());
+        
         return true;
     }
     
@@ -24,13 +25,12 @@ class RandomizedSet {
 
         int len = vals.size()-1;
 
-        if (idx == len) vals.remove(len); 
-        else {
+        if (idx != len){  
             vals.set(idx, vals.get(len));
-            vals.remove(len);
             map.put(vals.get(idx), idx);
         }
-
+    
+        vals.remove(len);
         map.remove(val);
 
         return true;
