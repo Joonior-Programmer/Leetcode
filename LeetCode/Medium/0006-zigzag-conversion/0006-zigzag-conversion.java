@@ -2,23 +2,19 @@ class Solution {
     public String convert(String s, int numRows) {
         if (numRows == 1) return s;
         
-        StringBuilder ret[] = new StringBuilder[numRows];
-        int i = 0;
+        StringBuilder ret = new StringBuilder();
         int n = s.length();
+        int cycle = 2 * numRows - 2;
         char[] sCharArray = s.toCharArray();
-        StringBuilder sb = new StringBuilder();
         
-        for (int j = 0; j < numRows; ++j) ret[j] = new StringBuilder();
-
-        while (i < n){
-            for (int idx = 0; idx < numRows && i < n; ++idx) ret[idx].append(sCharArray[i++]);     
-            for (int idx = numRows-2; idx > 0 && i < n; idx--) ret[idx].append(sCharArray[i++]);
-        }
-        
-        for (StringBuilder v : ret){
-            sb.append(v.toString());
+        for (int i = 0; i < numRows; ++i){
+            for (int j = 0; j + i < n; j += cycle){
+                ret.append(sCharArray[i+j]);
+                
+                if (i != 0 && i != numRows - 1 && j + cycle - i < n) ret.append(sCharArray[j+cycle-i]);
+            }
         }
             
-        return sb.toString();
+        return ret.toString();
     }
 }
