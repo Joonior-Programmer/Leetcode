@@ -1,50 +1,27 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         count = Counter(t)
+        need_count = len(t)
     
-        n = len(s)
-        m = len(t)
+        start, end = 0, float("inf")
+        l = 0
 
-        l, r = 0, m
-        curr_count = Counter(s[0:m])
-
-        while True:
-            condition = True
-            for k, v in count.items():
-                if curr_count[k] < v:
-                    if r >= n:
-                        return ""
-                    condition = False
-                    curr_count[s[r]] += 1
-                    r += 1
-                    
-                    break
-            if condition:
-                break
-        
-        ret = s[l:r]
-
-        while r <= n:
-            condition = True
-            for k, v in count.items():
-                if curr_count[k] < v:
-                    condition = False
-                    break
-
-            if condition:
-                while curr_count[s[l]] > count[s[l]]:
-                    curr_count[s[l]] -= 1
-                    l += 1
-
-                if r - l < len(ret):
-                    ret = s[l:r]
+        for r, v in enumerate(s):
+            if count[v] > 0:
+                need_count -= 1
             
-            if r >= n:
-                break
+            count[v] -= 1
 
-            curr_count[s[l]] -= 1
-            l += 1
-            curr_count[s[r]] += 1
-            r += 1
+            if need_count == 0:
+                while count[s[l]] != 0:
+                    count[s[l]] += 1
+                    l += 1
+                if r - l < end - start:
+                    start = l
+                    end = r
 
-        return ret
+                need_count += 1
+                count[s[l]] += 1
+                l += 1
+
+        return "" if end > len(s) else s[start:end+1]
