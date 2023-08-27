@@ -6,18 +6,14 @@ class Solution:
 
         for r in range(9):
             for c in range(9):
-                v = board[r][c]
+                v = ord(board[r][c]) - 49
 
-                if v == ".":
+                if v < 0:
                     continue
-                v = int(v) - 1
 
-                box_num = (0 if c < 3 else 1 if c < 6 else 2) + (3 * (0 if r < 3 else 1 if r < 6 else 2))
-                if row[r][v]:
-                    return False
-                if col[c][v]:
-                    return False
-                if box[box_num][v]:
+                box_num = c // 3 + 3 * (r // 3)
+                
+                if row[r][v] or col[c][v] or box[box_num][v]:
                     return False
                 
                 row[r][v] += 1
