@@ -7,13 +7,11 @@ public:
         
         for (int r = 0; r < 9; ++r){
             for (int c = 0; c < 9; ++c){
-                int v = board[r][c];
+                int v = board[r][c] - 49;
                 
-                if (v == '.') continue;
+                if (v < 0) continue;
 
-                v -= 49;
-
-                int boxNum = (c < 3 ? 0 : c < 6 ? 1 : 2) + (3 * (r < 3 ? 0 : r < 6 ? 1 : 2));
+                int boxNum = c / 3 + 3 * (r / 3);
 
                 if (row[r][v] > 0 || col[c][v] > 0 || box[boxNum][v] > 0) return false;
 
