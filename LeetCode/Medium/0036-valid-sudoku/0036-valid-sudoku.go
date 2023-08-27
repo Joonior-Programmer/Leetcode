@@ -15,20 +15,8 @@ func isValidSudoku(board [][]byte) bool {
             
             if v < 0 { continue }
             
-            boxNum := 0
+            boxNum := c / 3 + 3 * (r / 3)
             
-            if c > 5 {
-                boxNum += 2
-            } else if c > 2 {
-                boxNum += 1
-            }
-            
-            if r > 5 {
-                boxNum += 6
-            } else if r > 2 {
-                boxNum += 3
-            }
-
             if row[r][v] > 0 || col[c][v] > 0 || box[boxNum][v] > 0 { return false }
             
             row[r][v]++
