@@ -2,6 +2,7 @@ class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> ret = new ArrayList();
         HashMap<String, List<String>> temp = new HashMap(); 
+        
         for (int i = 0; i < strs.length; ++i){
             char[] temp_word = strs[i].toCharArray();
             Arrays.sort(temp_word);
