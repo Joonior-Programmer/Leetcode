@@ -18,10 +18,6 @@ class Solution {
             ret.add(temp);
         }
         
-        int[][] result = new int[ret.size()][2];
-        
-        for (int j = 0; j < ret.size(); ++j) result[j] = ret.get(j);
-        
-        return result;
+        return ret.toArray(new int[ret.size()][]);
     }
 }
