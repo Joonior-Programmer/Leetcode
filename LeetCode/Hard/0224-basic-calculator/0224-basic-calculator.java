@@ -1,36 +1,32 @@
 class Solution {
     public int calculate(String s) {
         int ret = 0;
-        char preOp = '+';
+        int op = 1;
         int temp = 0;
         Stack<Integer> stack = new Stack();
-        Stack<Character> opStack = new Stack();
-        s += "+";
         
         for (char v : s.toCharArray()){
-            if (Character.isDigit(v)) temp = temp * 10 + v - '0';
+            if (Character.isDigit(v)) temp = temp * 10 + (v - '0');
             else if (v == '+' || v == '-'){
-                if (preOp == '+') ret += temp;
-                else ret -= temp;
+                ret += op * temp;
                 temp = 0;
-                preOp = v;
+                op = v == '+' ? 1 : -1;
             } else if (v == '('){
                 stack.push(ret);
-                opStack.push(preOp);
-                preOp = '+';
+                stack.push(op);
+                op = 1;
                 ret = 0;
             } else if (v == ')'){
-                if (preOp == '+') ret += temp;
-                else ret -= temp;
-                
-                if (opStack.peek() == '+') ret += stack.peek();
-                else ret = stack.peek() - ret;
+                ret += op * temp;
+                ret *= stack.peek();
                 stack.pop();
-                opStack.pop();
+                ret += stack.peek();
+                stack.pop();
                 temp = 0;
             }
         }
         
+        ret += op * temp;
         return ret;
     }
 }
