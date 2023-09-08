@@ -8,39 +8,25 @@ class Solution:
         if left == right:
             return head
 
-        conn_head = head
-        conn_tail = head
-        change_head = head
-        change_tail = head
-        i = 1
+        dummy = ListNode()
+        dummy.next = head
+        pre = dummy
 
-        while i < left-1:
-            conn_head = conn_head.next
-            conn_tail = conn_tail.next
-            change_head = change_head.next
-            change_tail = change_tail.next
-            i += 1
+        for i in range(left-1):
+            pre = pre.next
         
-        conn_tail = conn_tail.next
-
-        if left != 1:
-            change_head = change_head.next
+        curr = pre.next
         prev = None
 
-        while i < right:
-            temp = change_tail.next
-            conn_tail = temp.next
-            change_tail.next = prev
-            prev = change_tail
-            change_tail = temp
-            i += 1
+        for i in range(right-left+1):
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        
+        pre.next.next = curr
+        pre.next = prev
 
-        change_tail.next = prev
-        conn_head.next = change_tail
-        change_head.next = conn_tail
+        return dummy.next
 
-        if left == 1:
-            return change_tail
-            
-        return head
         
