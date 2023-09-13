@@ -22,5 +22,3 @@ class Solution:
             dummy.right = node
         
         post_order(root)
-        
-        return dummy.right
