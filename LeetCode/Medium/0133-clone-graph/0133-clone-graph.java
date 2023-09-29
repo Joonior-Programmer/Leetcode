@@ -23,7 +23,6 @@ class Solution {
         if (node == null) return node;
         
         Node[] ret = new Node[101];
-        boolean[] visited = new boolean[101];
         Stack<Node> stack = new Stack();
         ret[1] = new Node(node.val);
         stack.push(node);
@@ -33,8 +32,7 @@ class Solution {
             stack.pop();
             
             for (Node neighbor : temp.neighbors){
-                if (!visited[neighbor.val]){
-                    visited[neighbor.val] = true;
+                if (ret[neighbor.val] == null){
                     ret[neighbor.val] = new Node(neighbor.val);
                     stack.push(neighbor);
                 }
