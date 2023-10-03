@@ -1,5 +1,4 @@
 class Solution {
-    boolean[][] visited;
     char[][] board;
     int rowLen;
     int colLen;
@@ -9,11 +8,9 @@ class Solution {
         this.board = board;
         rowLen = board.length;
         colLen = board[0].length;
-
+        
         target = word.toCharArray();
         n = target.length;
-        
-        visited = new boolean[rowLen][colLen];
         
         for (int row = 0; row < rowLen; ++row){
             for (int col = 0; col < colLen; ++col){
@@ -27,17 +24,18 @@ class Solution {
     }
     
     private boolean dfs(int row, int col, int idx){
-        visited[row][col] = true;
         ++idx;
-        
         if (idx == n) return true;
         
-        if (row > 0 && !visited[row-1][col] && board[row-1][col] == target[idx] && dfs(row-1, col, idx)) return true;
-        if (row < rowLen - 1 && !visited[row+1][col] && board[row+1][col] == target[idx] && dfs(row+1, col, idx)) return true;
-        if (col > 0 && !visited[row][col-1] && board[row][col-1] == target[idx] && dfs(row, col - 1, idx)) return true;
-        if (col < colLen - 1 && !visited[row][col + 1] && board[row][col+1] == target[idx] && dfs(row, col+1, idx)) return true;
+        char temp = board[row][col];
+        board[row][col] = '?';
         
-        visited[row][col] = false;
+        if (row > 0 && board[row-1][col] == target[idx] && dfs(row-1, col, idx)) return true;
+        if (row < rowLen - 1 && board[row+1][col] == target[idx] && dfs(row+1, col, idx)) return true;
+        if (col > 0 && board[row][col-1] == target[idx] && dfs(row, col - 1, idx)) return true;
+        if (col < colLen - 1  && board[row][col+1] == target[idx] && dfs(row, col+1, idx)) return true;
+        
+        board[row][col] = temp;
         
         return false;
     }
