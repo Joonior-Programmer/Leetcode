@@ -11,10 +11,8 @@ class Solution {
 
         for (int i = n-2; i > -1; i--){
             List<Integer> curr = triangle.get(i);
-            for (int j = 0; j < i+1; ++j) {
-                int temp = curr.get(j);
-                dp[j] = Math.min(temp + dp[j], temp + dp[j+1]);
-            }
+            for (int j = 0; j < i+1; ++j) 
+                dp[j] = curr.get(j) + Math.min(dp[j], dp[j+1]);
         }
         
         return dp[0];
