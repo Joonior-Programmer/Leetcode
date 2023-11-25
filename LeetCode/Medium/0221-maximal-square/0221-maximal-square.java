@@ -23,6 +23,6 @@ class Solution {
             }
         }
         
-        return (int)Math.pow(ret, 2);
+        return ret * ret;
     }
 }
