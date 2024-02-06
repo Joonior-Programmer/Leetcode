@@ -22,17 +22,12 @@ class Solution {
 
         ret[0] += '0';
 
-        if (ret[0] == '0') {
-            int idx = 0;
-            while (idx < ret.length && ret[idx] == '0') ++idx;
-            
-            if (ret.length == idx) return "0";
-
-            return new String(ret).substring(idx, ret.length);
-        }
-
         
+        int idx = 0;
+        while (idx < ret.length && ret[idx] == '0') ++idx;
+        
+        if (ret.length == idx) return "0";
 
-        return new String(ret);
+        return new String(ret).substring(idx, ret.length);
     }
 }
