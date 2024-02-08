@@ -19,7 +19,7 @@ class Solution:
             
             ret += 1
             curr = temp
-            print(curr)
+    
         return ret
         
         
