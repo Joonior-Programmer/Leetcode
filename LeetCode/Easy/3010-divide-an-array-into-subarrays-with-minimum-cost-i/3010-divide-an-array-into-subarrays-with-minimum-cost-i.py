@@ -1,17 +1,15 @@
 class Solution:
     def minimumCost(self, nums: List[int]) -> int:
-        count = Counter(nums)
-        left = 2
-        i = 1
         ret = nums[0]
-        count[nums[0]] -= 1
+        first = 999
+        second = 999
         
-        while left:
-            if count[i]:
-                count[i] -= 1
-                ret += i
-                left -= 1
-            else:
-                i += 1
+        for i in range(1, len(nums)):
+            temp = nums[i]
+            if temp < first:
+                second = first
+                first = temp
+            elif temp < second:
+                second = temp
         
-        return ret
+        return ret + first + second
