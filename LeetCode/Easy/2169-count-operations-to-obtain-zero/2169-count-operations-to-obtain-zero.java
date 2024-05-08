@@ -3,9 +3,13 @@ class Solution {
         int ret = 0;
         
         while (num1 > 0 && num2 > 0){
-            if (num1 >= num2) num1 -= num2;
-            else num2 -= num1;
-            ++ret;
+            if (num1 >= num2) {
+                ret += num1 / num2;
+                num1 %= num2;
+            } else {
+                ret += num2 / num1;
+                num2 %= num1;
+            }
         }
         return ret;
     }
