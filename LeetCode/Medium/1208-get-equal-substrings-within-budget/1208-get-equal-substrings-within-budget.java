@@ -12,14 +12,11 @@ class Solution {
         for (int i = 0; i < n; ++i) diff[i] = Math.abs(sCharArray[i] - tCharArray[i]);
         
         while (r < n){
-            if (curr + diff[r] <= maxCost){
-                curr += diff[r];
-                ++r;
-                ret = Math.max(ret, r - l);
-            } else {
-                curr -= diff[l];
-                ++l;
-            }
+            curr += diff[r++];
+            
+            if (curr > maxCost) curr -= diff[l++];
+
+            ret = Math.max(ret, r - l);
         }
         
         return ret;
