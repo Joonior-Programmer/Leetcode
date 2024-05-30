@@ -56,26 +56,26 @@ class Solution {
     // public ListNode mergeKLists(ListNode[] lists) {
         
         
-//         int[] count = new int[20001];
-//         ListNode dummy = new ListNode();
+    //     int[] count = new int[20001];
+    //     ListNode dummy = new ListNode();
         
-//         for (ListNode curr : lists){
-//             while (curr != null){
-//                 ++count[curr.val + 10000];
-//                 curr = curr.next;
-//             }
-//         }
+    //     for (ListNode curr : lists){
+    //         while (curr != null){
+    //             ++count[curr.val + 10000];
+    //             curr = curr.next;
+    //         }
+    //     }
         
-//         ListNode curr = dummy;
+    //     ListNode curr = dummy;
         
-//         for (int i = 0; i < 20001; ++i) {
-//             while (count[i] > 0){
-//                 curr.next = new ListNode(i - 10000);
-//                 curr = curr.next;
-//                 count[i]--;
-//             }
-//         }
+    //     for (int i = 0; i < 20001; ++i) {
+    //         while (count[i] > 0){
+    //             curr.next = new ListNode(i - 10000);
+    //             curr = curr.next;
+    //             count[i]--;
+    //         }
+    //     }
         
-//         return dummy.next;
+    //     return dummy.next;
     // }
 }
