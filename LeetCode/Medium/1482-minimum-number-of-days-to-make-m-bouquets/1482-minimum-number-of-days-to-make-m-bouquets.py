@@ -10,14 +10,13 @@ class Solution:
             for v in bloomDay:
                 if v <= x:
                     curr += 1
+                    if curr == k:
+                        curr = 0
+                        bouqets += 1
+                        if bouqets == m:
+                            return True
                 else:
                     curr = 0
-                
-                if curr == k:
-                    curr = 0
-                    bouqets += 1
-                    if bouqets == m:
-                        return True
             
             return False
         
