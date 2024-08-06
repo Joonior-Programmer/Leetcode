@@ -1,5 +1,3 @@
-from queue import PriorityQueue
-
 class Solution:
     def minimumPushes(self, word: str) -> int:
         arr = [0] * 26
@@ -13,6 +11,7 @@ class Solution:
             arr[ord(v) - 97] += 1
 
         max_heap = []
+        
         for i in range(26):
             if arr[i]:
                 heapq.heappush(max_heap, (-arr[i], chr(97 + i)))
