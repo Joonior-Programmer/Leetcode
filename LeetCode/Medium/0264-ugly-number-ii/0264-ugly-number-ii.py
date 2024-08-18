@@ -1,22 +1,20 @@
 class Solution:
     def nthUglyNumber(self, n: int) -> int:
-        pq = [1]
-        used = set()
-        ret = 1
+        dp = [0] * n
+        dp[0] = 1
 
-        for i in range(n):
-            ret = heappop(pq)
-            
-            if ret * 2 not in used:
-                heappush(pq, ret * 2)
-                used.add(ret * 2)
+        p2, p3, p5 = 0, 0, 0
 
-            if ret * 3 not in used:
-                heappush(pq, ret * 3)
-                used.add(ret * 3)
-            
-            if ret * 5 not in used:
-                heappush(pq, ret * 5)
-                used.add(ret * 5)
-        
-        return ret
+        for i in range(1, n):
+            p2Val = dp[p2] * 2
+            p3Val = dp[p3] * 3
+            p5Val = dp[p5] * 5
+
+            target = min(p2Val, p3Val, p5Val)
+            dp[i] = target
+
+            if target == p2Val: p2 += 1
+            if target == p3Val: p3 += 1
+            if target == p5Val: p5 += 1
+
+        return dp[n-1]
