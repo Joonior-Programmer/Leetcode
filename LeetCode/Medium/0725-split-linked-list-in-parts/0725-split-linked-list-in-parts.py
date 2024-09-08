@@ -24,8 +24,9 @@ class Solution:
             extra_nodes -= 1
             
             for j in range(current_part_size - 1):
-                if curr:
-                    curr = curr.next
+                if not curr:
+                    break
+                curr = curr.next
             
             if curr:
                 next_part_head = curr.next
