@@ -6,11 +6,9 @@ func longestSubarray(nums []int) int {
     for _, v := range nums {
         if target < v {
             ret = 1
-            curr = 0
+            curr = 1
             target = v
-        }
-
-        if v == target {
+        } else if v == target {
             curr++
         } else {
             ret = max(ret, curr)
