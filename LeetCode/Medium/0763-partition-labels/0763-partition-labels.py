@@ -18,13 +18,10 @@ class Solution:
                 ret.append(end - start + 1)
                 start = idxs[idx][0]
                 end = idxs[idx][-1]
-                # print('!!!', v,start, end)
             elif end >= idxs[idx][-1]:
-                # print('@@@', v)
                 continue
             else:
                 end = idxs[idx][-1]
-                # print('###', v, end)
         
         ret.append(end-start+1)
 
