@@ -10,8 +10,6 @@ class Solution:
         end = idxs[ord(s[0])-97][-1]
         ret = []
 
-        print(start, end)
-
         for i, v in enumerate(s):
             idx = ord(v) - 97
             if end < idxs[idx][0]:
