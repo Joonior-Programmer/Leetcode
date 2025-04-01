@@ -7,4 +7,4 @@ class Solution:
             point, bp = questions[i]
             dp[i] = max(dp[i+1], dp[min(bp + i + 1, n)] + point)
         
-        return max(dp)
+        return dp[0]
